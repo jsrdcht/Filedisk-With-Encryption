@@ -1,0 +1,81 @@
+C:\>filedisk
+syntax:
+filedisk /mount  <filename> [size[k|M|G] | /ro | /cd] [<drive:>] [Encryption]
+filedisk /umount [<drive:>]
+filedisk /status [<drive:>]
+filedisk /encrypt <filename_plain> <filename_encryped> [Encryption]
+filedisk /decrypt <filename_crypt> <filename_plain> [Encryption]
+filedisk /rnd [/m]  (Generate Random key)
+
+filename formats:
+  c:\path\filedisk.img
+  \Device\Harddisk0\Partition1\path\filedisk.img
+  \\server\share\path\filedisk.img
+
+Encryption
+/2f:key encrypt / decrypt with twofish using the given key
+/aes128:key encrypt / decrypt with AES128 using the given key
+/aes256:key encrypt / decrypt with AES256 using the given key
+/aes192:key encrypt / decrypt with AES192 using the given key
+
+example:
+filedisk /mount  c:\temp\filedisk.img 8M /aes256
+filedisk /mount  c:\temp\cdimage.iso /cd g:
+filedisk /umount f:
+filedisk /umount
+
+C:\>filedisk /mount 0 c:\temp\filedisk.img 8M f: /aes256
+
+C:\>format /fs:fat f:
+The type of the file system is RAW.
+The new file system is FAT.
+
+
+
+WARNING, ALL DATA ON NON-REMOVABLE DISK
+DRIVE F: WILL BE LOST!
+Proceed with Format (Y/N)? y
+Verifying 7M
+Initializing the File Allocation Table (FAT)...
+Volume label (11 characters, ENTER for none)? filedisk
+Format complete.
+
+    8 353 792 bytes total disk space.
+    8 353 792 bytes available on disk.
+
+        2 048 bytes in each allocation unit.
+        4 079 allocation units available on disk.
+
+           12 bits in each FAT entry.
+
+Volume Serial Number is 28DF-0C81
+
+C:\>dir f:
+ Volume in drive F is FILEDISK
+ Volume Serial Number is 28DF-0C81
+
+ Directory of F:\
+
+File Not Found
+
+C:\>chkdsk f:
+The type of the file system is FAT.
+Volume FILEDISK created 2002-11-24 14:25
+Volume Serial Number is 28DF-0C81
+Windows is verifying files and folders...
+File and folder verification is complete.
+Windows has checked the file system and found no problems.
+
+    8 353 792 bytes total disk space.
+    8 353 792 bytes available on disk.
+
+        2 048 bytes in each allocation unit.
+        4 079 total allocation units on disk.
+        4 079 allocation units available on disk.
+
+C:\>filedisk /status
+f: \??\c:\temp\filedisk.img Size: 8388608 bytes
+
+C:\>filedisk /umount
+
+C:\>
