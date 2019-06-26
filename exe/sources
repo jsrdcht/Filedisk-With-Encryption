@@ -1,0 +1,6 @@
+TARGETNAME=filedisk
+TARGETPATH=obj
+TARGETTYPE=PROGRAM
+UMTYPE=console
+INCLUDES=..\sys\inc
+SOURCES=filedisk.c filedisk.rc loop_fish2.c rmd160.c sha512.c aes.c
